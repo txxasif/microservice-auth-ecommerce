@@ -40,6 +40,11 @@
     "winston": "^3.14.2"
   },
   "devDependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/compression": "^1.7.5",
+    "@types/cors": "^2.8.17",
+    "@types/hpp": "^0.2.6",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^22.4.1",
     "@types/sequelize": "^4.28.20"
   }
