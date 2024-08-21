@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1724165328694,
-      "tag": "0000_natural_sentry",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1724166375739,
-      "tag": "0001_dusty_blue_marvel",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1724168442710,
-      "tag": "0002_rainy_crystal",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1724182392689,
-      "tag": "0003_far_logan",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1724182411957,
-      "tag": "0004_grey_zarek",
+      "when": 1724230148183,
+      "tag": "0000_great_karen_page",
       "breakpoints": true
     }
   ]

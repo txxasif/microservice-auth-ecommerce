@@ -1,1 +1,0 @@
-ALTER TABLE `auths` MODIFY COLUMN `passwordResetExpires` timestamp;

@@ -1,4 +1,5 @@
 CREATE TABLE `auths` (
+	`id` int AUTO_INCREMENT NOT NULL,
 	`username` varchar(255) NOT NULL,
 	`password` varchar(255) NOT NULL,
 	`profilePublicId` varchar(255) NOT NULL,
@@ -13,5 +14,10 @@ CREATE TABLE `auths` (
 	`otpExpiration` date,
 	`createdAt` timestamp DEFAULT (now()),
 	`passwordResetToken` varchar(255),
-	`passwordResetExpires` timestamp NOT NULL
+	`passwordResetExpires` timestamp,
+	CONSTRAINT `auths_id` PRIMARY KEY(`id`),
+	CONSTRAINT `idIndex` UNIQUE(`id`),
+	CONSTRAINT `emailIndex` UNIQUE(`email`),
+	CONSTRAINT `userNameIndex` UNIQUE(`username`),
+	CONSTRAINT `emailVerificationTokenIndex` UNIQUE(`emailVerificationToken`)
 );
