@@ -1,4 +1,5 @@
 export interface IAuthDocumentNew {
+  id?: number;
   username: string;
   password: string;
   profilePublicId: string;
@@ -6,12 +7,12 @@ export interface IAuthDocumentNew {
   country: string;
   profilePicture: string;
   emailVerificationToken: string;
-  emailVerified: boolean;
+  emailVerified?: boolean;
   browserName: string;
   deviceType: string;
-  otp?: string; // Optional
-  otpExpiration?: Date; // Optional
+  otp?: string | undefined; // Optional
+  otpExpiration?: Date | undefined; // Optional
   createdAt?: Date; // Optional, will be auto-set by the database
-  passwordResetToken?: string; // Optional
-  passwordResetExpires?: Date; // Optional
+  passwordResetToken?: string | undefined; // Optional
+  passwordResetExpires?: Date | undefined; // Optional
 }

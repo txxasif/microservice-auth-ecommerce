@@ -1,4 +1,4 @@
-import { getAuthUserController } from '@auth/controller/auth.controller';
+import { getAuthUserController } from '@auth/controller/signup';
 import express, { Router } from 'express';
 
 const router: Router = express.Router();

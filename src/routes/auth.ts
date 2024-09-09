@@ -1,10 +1,11 @@
-import { createAuthUserController } from '@auth/controller/auth.controller';
+import { createAuthUserController } from '@auth/controller/signup';
+import { verifyGatewayRequest } from '@txxasif/shared';
 import express, { Router } from 'express';
 
 const router: Router = express.Router();
 
 export function authRoutes(): Router {
-  router.post('/signup', createAuthUserController);
+  router.post('/signup', verifyGatewayRequest, createAuthUserController);
   // router.post('/signin', read);
   // router.put('/verify-email', update);
   // router.put('/verify-otp/:otp', updateOTP);
