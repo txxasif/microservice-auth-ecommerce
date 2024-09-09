@@ -33,7 +33,7 @@ const changePasswordSchema: ObjectSchema = Joi.object().keys({
     'string.min': 'Invalid password',
     'string.max': 'Invalid password',
     'string.empty': 'Password is a required field'
-  }),
+  })
 });
 
 export { emailSchema, passwordSchema, changePasswordSchema };

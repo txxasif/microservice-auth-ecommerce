@@ -4,7 +4,7 @@ import { auths } from '@auth/db/schema';
 import { IAuthDocumentNew } from '@auth/types/types';
 import { IAuthBuyerMessageDetails, winstonLogger, firstLetterUppercase, lowerCase, IAuthDocument } from '@txxasif/shared';
 import { Logger } from 'winston';
-import { eq, getTableColumns, or } from 'drizzle-orm';
+import { eq, getTableColumns, or, and, gt } from 'drizzle-orm';
 import { publishDirectMessage } from '@auth/queues/auth.producer';
 import { authChannel } from '@auth/server';
 import { omit } from 'lodash';
@@ -128,6 +128,31 @@ export async function updateUserOTP(
 ): Promise<void> {
   try {
     await db.update(auths).set({ otp, otpExpiration, browserName, deviceType }).where(eq(auths.id, authId));
+  } catch (error) {
+    log.error(error);
+  }
+}
+export async function getAuthUserByVerificationToken(token: string): Promise<IAuthDocument | undefined> {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...rest } = getTableColumns(auths);
+    const user = await db.select(rest).from(auths).where(eq(auths.emailVerificationToken, token)).limit(1);
+    return user[0];
+  } catch (error) {
+    log.error(error);
+  }
+}
+export async function getAuthUserByPasswordToken(token: string): Promise<IAuthDocument | undefined> {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...rest } = getTableColumns(auths);
+    const user = await db
+      .select(rest)
+      .from(auths)
+      .where(and(eq(auths.passwordResetToken, token), gt(auths.passwordResetExpires, new Date())))
+      .limit(1); // Equivalent to findOne()
+
+    return user[0];
   } catch (error) {
     log.error(error);
   }
