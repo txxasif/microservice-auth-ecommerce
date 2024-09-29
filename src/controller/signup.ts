@@ -2,7 +2,7 @@ import crypto from 'crypto';
 
 import { StatusCodes } from 'http-status-codes';
 import { signupSchema } from '@auth/schemes/signup';
-import { createAuthUser, getAuthUserById, getUserByUsernameOrEmail, signToken } from '@auth/services/auth.service';
+import { createAuthUser, getUserByUsernameOrEmail, signToken } from '@auth/services/auth.service';
 import { BadRequestError, IEmailMessageDetails, firstLetterUppercase, lowerCase, uploads } from '@txxasif/shared';
 import { Request, Response } from 'express';
 import { v4 as uuidV4 } from 'uuid';
@@ -12,17 +12,6 @@ import { publishDirectMessage } from '@auth/queues/auth.producer';
 import { authChannel } from '@auth/server';
 import { IAuthDocumentNew } from '@auth/types/types';
 import { hashPassword } from '@auth/helper/helper';
-export const createAuthUserController = async (req: Request, res: Response) => {
-  const body = req.body;
-  await createAuthUser(body);
-  res.send('create auth user');
-};
-
-export const getAuthUserController = async (req: Request, res: Response) => {
-  const authId = req.params.id;
-  const user = await getAuthUserById(Number(authId));
-  res.status(StatusCodes.OK).json({ message: 'Authenticated user', user });
-};
 
 export async function create(req: Request, res: Response): Promise<void> {
   const { error } = await Promise.resolve(signupSchema.validate(req.body));
